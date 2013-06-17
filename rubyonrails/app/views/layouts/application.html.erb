@@ -1,14 +1,106 @@
+<% provide(:breadcrumb, '') %>
 <!DOCTYPE html>
-<html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
 <head>
-  <title>Rubyonrails</title>
+  <title>Notejam</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/skeleton.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/tables.css">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <link rel="shortcut icon" href="images/favicon.ico">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
 </head>
+
 <body>
+  <div class="container">
+    <div class="sixteen columns">
+      <div class="sign-in-out-block">
+        <% if @user %>
+        <%= @user.email %>:&nbsp;
+        <%= link_to "Account settings", "#" %>&nbsp;&nbsp;&nbsp;
+        <%= link_to "Sign out", "#" %>
+        <% else %>
+        <%= link_to "Sign up", signup_path %>&nbsp;&nbsp;&nbsp;<%= link_to "Sign in", signin_path %>
+        <% end %>
+      </div>
+    </div>
+    <div class="sixteen columns">
+      <h1 class="bold-header">notejam
+        <span><%= yield :breadcrumb %></span>
+      </h1>
+    </div>
+    <%= yield :sidebar %>
+    <%= yield %>
+<!--
+    <div class="thirteen columns content-area">
+      <table class="notes">
+        <tr>
+          <th>Note <a href="#" class="sort_arrow" >&uarr;</a><a href="#" class="sort_arrow" >&darr;</a></th>
+          <th class="date">Last modified <a href="#" class="sort_arrow" >&uarr;</a><a href="#" class="sort_arrow" >&darr;</a></th>
+        </tr>
+        <tr>
+          <td><a href="#">My sport activites</a></td>
+          <td class="hidden-text date">Today at 10:51</td>
+        </tr>
+        <tr>
+          <td><a href="#">February reports</a></td>
+          <td class="hidden-text date">Yesterday</td>
+        </tr>
+        <tr>
+          <td><a href="#">Budget plan</a></td>
+          <td class="hidden-text date">Feb 10 2013</td>
+        </tr>
+        <tr>
+          <td><a href="#">Visit Agenda for all customers</a></td>
+          <td class="hidden-text date">Feb 02 2013</td>
+        </tr>
+        <tr>
+          <td><a href="#">Gifts</a></td>
+          <td class="hidden-text date">Jan 29 2013</td>
+        </tr>
+        <tr>
+          <td><a href="#">Calendar events</a></td>
+          <td class="hidden-text date">Jan 29 2013</td>
+        </tr>
+        <tr>
+          <td><a href="#">TV series</a></td>
+          <td class="hidden-text date">Dec 01 2012</td>
+        </tr>
+        <tr>
+          <td><a href="#">Daily post</a></td>
+          <td class="hidden-text date">Nov 28 2012</td>
+        </tr>
+      </table>
+      <button>Create a note</button>
+    </div>
+-->
 
-<%= yield %>
 
+
+    <hr class="footer" />
+    <footer>
+      <div class="footer">2013, notejam project</div>
+    </footer>
+  </div><!-- container -->
+  <%= debug(params) if Rails.env.development? %>
+  <a href="https://github.com/you"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
 </body>
 </html>

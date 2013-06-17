@@ -1,4 +1,8 @@
 Rubyonrails::Application.routes.draw do
+  resources :pads
+  resources :notes
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -55,4 +59,10 @@ Rubyonrails::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
+  root :to => 'home#index'
+  match '/signup', to: 'users#new', via: :get
+  match '/signup', to: 'users#create', via: :post
+  match '/signin', to: 'users#nope'
+  # match "login", :to => "sessions#login"
+  # match "logout", :to => "sessions#logout"
 end

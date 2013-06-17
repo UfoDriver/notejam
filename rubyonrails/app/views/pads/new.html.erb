@@ -1,0 +1,19 @@
+<% provide(:breadcrumb, 'Create a pad') %>
+
+<%= render 'form' %>
+
+
+<% content_for :sidebar do %>
+<div class="three columns">
+  <h4 id="logo">My pads</h4>
+  <nav>
+    <ul>
+      <% for pad in @pads %>
+        <li><%= link_to pad.name, pad_path(pad.id) %></li>
+      <% end %>
+    </ul>
+    <hr />
+    <%= link_to "Add pad", new_pad_path %>
+  </nav>
+</div>
+<% end %>
