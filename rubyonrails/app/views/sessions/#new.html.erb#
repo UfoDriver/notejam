@@ -1,5 +1,0 @@
-<% provide(:breadcrumb, 'Sign In') %>
-
-<div class="thirteen columns content-area">
-  <%= render('sessions/form') %>
-</div>
