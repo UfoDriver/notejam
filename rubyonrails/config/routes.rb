@@ -1,7 +1,9 @@
 Rubyonrails::Application.routes.draw do
-  resources :pads
-  resources :notes
+  resources :pads do
+    resources :notes
+  end
 
+  resources :sessions, only: [:new, :create, :destroy]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -62,7 +64,6 @@ Rubyonrails::Application.routes.draw do
   root :to => 'home#index'
   match '/signup', to: 'users#new', via: :get
   match '/signup', to: 'users#create', via: :post
-  match '/signin', to: 'users#nope'
-  # match "login", :to => "sessions#login"
-  # match "logout", :to => "sessions#logout"
+  match '/signin', to: 'sessions#new'
+  match '/signout', to: 'sessions#destroy', via: :delete
 end

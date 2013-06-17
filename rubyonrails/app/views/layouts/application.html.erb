@@ -33,10 +33,10 @@
   <div class="container">
     <div class="sixteen columns">
       <div class="sign-in-out-block">
-        <% if @user %>
-        <%= @user.email %>:&nbsp;
+        <% if signed_in? %>
+        <%= current_user.email %>:&nbsp;
         <%= link_to "Account settings", "#" %>&nbsp;&nbsp;&nbsp;
-        <%= link_to "Sign out", "#" %>
+        <%= link_to "Sign out", signout_path, method: 'delete' %>
         <% else %>
         <%= link_to "Sign up", signup_path %>&nbsp;&nbsp;&nbsp;<%= link_to "Sign in", signin_path %>
         <% end %>
@@ -48,6 +48,7 @@
       </h1>
     </div>
     <%= yield :sidebar %>
+    <%= render('shared/flash_messages') %>
     <%= yield %>
 <!--
     <div class="thirteen columns content-area">
