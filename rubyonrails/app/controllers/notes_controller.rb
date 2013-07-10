@@ -1,4 +1,6 @@
 class NotesController < ApplicationController
+  before_filter :signed_in_user
+
   # GET /notes
   # GET /notes.json
   def index
@@ -40,7 +42,7 @@ class NotesController < ApplicationController
   # POST /notes
   # POST /notes.json
   def create
-    @note = Note.new(params[:note])
+    @note = current_user.notes.build(params[:note])
 
     respond_to do |format|
       if @note.save

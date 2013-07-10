@@ -1,10 +1,5 @@
-<p id="notice"><%= notice %></p>
+<% content_for :breadcrumb do %>
+  <%= @pad.name %> (<%= @notes.length %>)
+<% end %>
 
-<p>
-  <b>Name:</b>
-  <%= @pad.name %>
-</p>
-
-
-<%= link_to 'Edit', edit_pad_path(@pad) %> |
-<%= link_to 'Back', pads_path %>
+<%= render 'notes/notes_list' %>

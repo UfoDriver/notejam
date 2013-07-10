@@ -1,7 +1,6 @@
 Rubyonrails::Application.routes.draw do
-  resources :pads do
-    resources :notes
-  end
+  resources :pads
+  resources :notes
 
   resources :sessions, only: [:new, :create, :destroy]
 

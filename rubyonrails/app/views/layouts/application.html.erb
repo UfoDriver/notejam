@@ -1,4 +1,11 @@
 <% provide(:breadcrumb, '') %>
+<% if signed_in? %>
+  <% content_for :sidebar do %>
+    <%= render 'pads/pads_sidebar' %>
+  <% end %>
+<% else %>
+  <% content_for :sidebar do %><% end %>
+<% end %>
 <!DOCTYPE html>
 <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
 <!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->

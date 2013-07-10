@@ -1,0 +1,19 @@
+<div class="thirteen columns content-area">
+  <% if @notes.length > 0 %>
+    <table class="notes">
+      <tr>
+        <th class="note">Note
+          <%= link_to '↑', '#', class: 'sort_arrow' %><%= link_to '↓', '#', class: 'sort_arrow' %>
+        <th>Pad</th>
+        </th>
+        <th class="date">Last modified
+          <%= link_to '↑', '#', class: 'sort_arrow' %><%= link_to '↓', '#', class: 'sort_arrow' %>
+        </th>
+      </tr>
+      <%= render @notes %>
+    </table>
+  <% else %>
+    <p class="empty">You don't have any notes</p>
+  <% end %>
+  <%= link_to 'Create a note', new_note_path, class: 'button' %>
+</div>

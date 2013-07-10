@@ -1,0 +1,12 @@
+<div class="three columns">
+  <h4 id="logo">My pads</h4>
+  <nav>
+    <ul>
+      <% @pads.each do |pad| %>
+        <li><%= link_to pad.name, pad_path(pad) %></li>
+      <% end %>
+    </ul>
+    <hr>
+    <%= link_to 'Add pad', new_pad_path %>
+  </nav>
+</div>

@@ -1,8 +1,10 @@
 class PadsController < ApplicationController
+  before_filter :signed_in_user
+
   # GET /pads
   # GET /pads.json
   def index
-    @pads = Pad.all
+    @notes = current_user.notes
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +15,8 @@ class PadsController < ApplicationController
   # GET /pads/1
   # GET /pads/1.json
   def show
-    @pad = Pad.find(params[:id])
+    @pad = current_user.pads.find(params[:id])
+    @notes = @pad.notes
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,8 +28,6 @@ class PadsController < ApplicationController
   # GET /pads/new.json
   def new
     @pad = Pad.new
-    @pads = []
-    @user = User.find(1)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -42,7 +43,7 @@ class PadsController < ApplicationController
   # POST /pads
   # POST /pads.json
   def create
-    @pad = Pad.new(params[:pad])
+    @pad = current_user.pads.build(params[:pad])
 
     respond_to do |format|
       if @pad.save
